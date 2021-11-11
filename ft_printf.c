@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/10 10:22:54 by mikuiper      #+#    #+#                 */
-/*   Updated: 2021/11/10 17:40:56 by mikuiper      ########   odam.nl         */
+/*   Updated: 2021/11/11 12:08:35 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	ft_printf(const char *format_list, ...)
 {
 	//int num;
 	va_list arg_list;
+	char	*format_list_s;
 	va_start(arg_list, format_list);
 	int	i;
 	int	j;

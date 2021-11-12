@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/10 10:22:54 by mikuiper      #+#    #+#                 */
-/*   Updated: 2021/11/11 12:08:35 by mikuiper      ########   odam.nl         */
+/*   Updated: 2021/11/12 18:07:50 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,37 +104,56 @@ int		fs_c(va_list arg_list)
 
 int	fs_s(va_list arg_list)
 {
-	char	arg;
+	char	*arg;
+	int		len;
+
+	arg = va_arg(arg_list, char *);
+
+	if (!(arg))
+	{
+		write (1, "(null)", 6);
+		return (6);
+		//ft_putstr_fd("(null)", 1);
+		//len = ft_strlen("(null)");
+		return (len);
+	}
+	else
+	{
+		ft_putstr_fd(arg, 1);
+		len = ft_strlen(arg);
+		return (len);
+	}
+	return (0);
 }
 
 int	fs_p(va_list arg_list)
 {
-	
+	return (0);
 }
 
 int	fs_d(va_list arg_list)
 {
-
+	return (0);
 }
 
 int	fs_i(va_list arg_list)
 {
-	
+	return (0);
 }
 
 int	fs_u(va_list arg_list)
 {
-	
+	return (0);
 }
 
 int	fs_x(va_list arg_list)
 {
-
+	return (0);
 }
 
 int	fs_X(va_list arg_list)
 {
-	
+	return (0);
 }
 
 int	parse_fs_list(char fs_char, va_list arg_list)
@@ -159,7 +178,8 @@ int	parse_fs_list(char fs_char, va_list arg_list)
 	if (fs_char == 'X')
 		nchars = (nchars + fs_X(arg_list));
 	if (fs_char == '%')
-		write(1, '%%', 1);
+		write(1, "%%", 1);
+	return (0);
 }
 
 int	ft_printf(const char *fs_list, ...)
@@ -183,11 +203,12 @@ int	ft_printf(const char *fs_list, ...)
 		}
 		else
 		{
-			nchars = (nchars + write(1, &fs_list_s[i], 1));
+			nchars = nchars + write(1, &fs_list_s[i], 1);
 		}
 		i++;
+		printf("%d", nchars);
 	}
-	va_end(arg_list)
+	va_end(arg_list);
 	return (nchars);
 }
 
@@ -195,7 +216,11 @@ int	main(void)
 {
 	int test1 = 42;
 	int test2 = 24;
-	ft_printf("Hoi!   %s", test1, test2);
+	char test3[] = "Goodmorning";
+	char test4 = 'X';
+	int tmp;
+
+	tmp = ft_printf("Hey: %s %c", NULL, test4);
+	printf("\naantal chars: %d", tmp);
 	return (0);
 }
-

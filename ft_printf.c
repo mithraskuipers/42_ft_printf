@@ -69,13 +69,17 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-
-
-
-
 int	ft_printf(const char *fs_list, ...);
 int	parse_fs_list(char fs_char, va_list arg_list);
 
+fs_c(va_list arg_list);
+fs_s(va_list arg_list);
+fs_p(va_list arg_list);
+fs_d(va_list arg_list);
+fs_i(va_list arg_list);
+fs_u(va_list arg_list);
+fs_x(va_list arg_list);
+fs_X(va_list arg_list);
 
 void	ft_putstr_fd(char *str, int fd)
 {

@@ -72,15 +72,16 @@ size_t	ft_strlen(const char *s)
 int	ft_printf(const char *fs_list, ...);
 int	parse_fs_list(char fs_char, va_list arg_list);
 
-fs_c(va_list arg_list);
-fs_s(va_list arg_list);
-fs_p(va_list arg_list);
-fs_d(va_list arg_list);
-fs_i(va_list arg_list);
-fs_u(va_list arg_list);
-fs_x(va_list arg_list);
-fs_X(va_list arg_list);
+int fs_c(va_list arg_list);
+int fs_s(va_list arg_list);
+int fs_p(va_list arg_list);
+int fs_d(va_list arg_list);
+int fs_i(va_list arg_list);
+int fs_u(va_list arg_list);
+int fs_x(va_list arg_list);
+int fs_X(va_list arg_list);
 
+/*
 void	ft_putstr_fd(char *str, int fd)
 {
 	if (str)
@@ -90,9 +91,9 @@ void	ft_putstr_fd(char *str, int fd)
 			str++;
 		}
 }
+*/
 
-
-int		fs_c(vs_list arg_list)
+int		fs_c(va_list arg_list)
 {
 	int	arg;
 
@@ -101,37 +102,37 @@ int		fs_c(vs_list arg_list)
 	return (1);
 }
 
-int	fs_s(vs_list arg_list)
+int	fs_s(va_list arg_list)
 {
-	char	arg
+	char	arg;
 }
 
-int	fs_p(vs_list arg_list)
-{
-	
-}
-
-int	fs_d(vs_list arg_list)
-{
-
-}
-
-int	fs_i(vs_list arg_list)
+int	fs_p(va_list arg_list)
 {
 	
 }
 
-int	fs_u(vs_list arg_list)
+int	fs_d(va_list arg_list)
+{
+
+}
+
+int	fs_i(va_list arg_list)
 {
 	
 }
 
-int	fs_x(vs_list arg_list)
+int	fs_u(va_list arg_list)
+{
+	
+}
+
+int	fs_x(va_list arg_list)
 {
 
 }
 
-int	fs_X(vs_list arg_list)
+int	fs_X(va_list arg_list)
 {
 	
 }
@@ -182,7 +183,7 @@ int	ft_printf(const char *fs_list, ...)
 		}
 		else
 		{
-			nchars = (nchars + write(1, fs_list_s[i], 1));
+			nchars = (nchars + write(1, &fs_list_s[i], 1));
 		}
 		i++;
 	}

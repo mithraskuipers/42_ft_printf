@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/10 10:22:54 by mikuiper      #+#    #+#                 */
-/*   Updated: 2021/11/12 18:07:50 by mikuiper      ########   odam.nl         */
+/*   Updated: 2021/11/14 15:31:00 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ static int	ft_ndigits(long n);
 static char	*ft_strfiller(char *n_str, int ndigits, long n_long);
 char	*ft_itoa(int n);
 
-
 // PUTSTR
 
 size_t	ft_strlen(const char *s)
@@ -80,6 +79,26 @@ size_t	ft_strlen(const char *s)
 void	ft_putstr_fd(char *s, int fd)
 {
 	write (fd, s, ft_strlen(s));
+}
+
+// STRDUP
+
+char	*ft_strdup(const char *s1)
+{
+	size_t	i;
+	char	*dup;
+
+	i = 0;
+	dup = malloc((ft_strlen(s1) + 1) * sizeof(char));
+	if (!(dup))
+		return (NULL);
+	while (s1[i])
+	{
+		dup[i] = s1[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
 }
 
 // PUTNBR
@@ -164,8 +183,6 @@ char	*ft_itoa(int n)
 	return (ft_strfiller(n_str, ndigits, n_long));
 }
 
-
-
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ptr;
@@ -201,12 +218,13 @@ void	*ft_calloc(size_t count, size_t size)
 
 
 
-
 char	*ft_utoa(unsigned int n)
 {
 	char			*n_str;
 	unsigned int	ndigits;
 
+	if (n == 0)
+		return (ft_strdup("0"));
 	ndigits = ft_ndigits(n);
 	n_str = ft_calloc(sizeof(char), (ndigits + 1));
 	if (!(n_str))
@@ -254,7 +272,6 @@ int		fs_c(va_list arg_list)
 int	fs_s(va_list arg_list)
 {
 	char	*arg;
-	int		len;
 
 	arg = va_arg(arg_list, char *);
 
@@ -264,8 +281,7 @@ int	fs_s(va_list arg_list)
 		return (6);
 	}
 	ft_putstr_fd(arg, 1);
-	len = ft_strlen(arg);
-	return (len);
+	return (ft_strlen(arg));
 }
 
 int	fs_p(va_list arg_list)
@@ -277,13 +293,11 @@ int	fs_di(va_list arg_list)
 {
 	char	*arg;
 	char	*s;
-	int		len;
 
 	arg = va_arg(arg_list, int);
 	s = ft_itoa(arg);
 	ft_putstr_fd(s, 1);
-	len = ft_strlen(s);
-	return (len);
+	return (ft_strlen(s));
 }
 
 // %u print an unsigned decimal (base 10) number.
@@ -292,13 +306,11 @@ int	fs_u(va_list arg_list)
 {
 	char	*arg;
 	char	*s;
-	int		len;
 
 	arg = va_arg(arg_list, unsigned int);
 	s = ft_utoa(arg);
 	ft_putstr_fd(s, 1);
-	len = ft_strlen(s);
-	return (len);
+	return (ft_strlen(s));
 }
 
 int	fs_x(va_list arg_list)
@@ -372,7 +384,7 @@ int	main(void)
 	int i_test1 = 123;															// 3
 	int i_test2 = 987654321;													// 9
 	unsigned int u_test1 = 123;													// 3
-	unsigned int u_test2 = 4294967295;											// 10
+	unsigned int u_test2 = 0;													// 10 // 4294967295
 
 	int c_count;
 	c_count = ft_printf("%c %c", c_test1, c_test2); 							// 8
@@ -396,9 +408,14 @@ int	main(void)
 	int u_count;
 	u_count = ft_printf("%u %u", u_test1, u_test2); 							// 11 + 17 + 1
 	printf("\n");
+	u_count = printf("%u %u", u_test1, u_test2); 							// 11 + 17 + 1
+	printf("\n");
+
 	printf("Number of chars: %d", u_count);
 	//printf("\n%d", u_test1);
 	printf("\n=======================\n");
+
+
 
 
 	return (0);

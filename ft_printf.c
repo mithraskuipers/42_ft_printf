@@ -11,7 +11,12 @@
 /* ************************************************************************** */
 
 
-// cd Documents/repos/personal/codam/ft_printf
+/*
+cd Documents/repos/personal/codam/ft_printf
+/home/mkuipers/Documents/ft_printf
+gcc ft_printf.c && ./a.out Hey
+*/
+
 /*
 cspdiuxX%
 A small description of the required conversion:
@@ -25,7 +30,6 @@ A small description of the required conversion:
 • %X print a number in hexadecimal (base 16), with uppercase.
 • %% print a percent sign.
 */
-
 
 /*
 va_start(ap, last_arg)
@@ -49,15 +53,19 @@ en dat valt bij mij onder arg_list. Dit betekent dat fs_list bij mij 1 deel is
 */
 
 
-/* libft */
+/* libft start */
 
-void	ft_putstr_fd(char *s, int fd);
 size_t	ft_strlen(const char *s);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putnbr_fd(int n, int fd);
 
-void	ft_putstr_fd(char *s, int fd)
-{
-	write (fd, s, ft_strlen(s));
-}
+static int	ft_ndigits(long n);
+static char	*ft_strfiller(char *n_str, int ndigits, long n_long);
+char	*ft_itoa(int n);
+
+
+// PUTSTR
 
 size_t	ft_strlen(const char *s)
 {
@@ -68,6 +76,159 @@ size_t	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	write (fd, s, ft_strlen(s));
+}
+
+// PUTNBR
+
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	unsigned int	nbr;
+
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		nbr = n * -1;
+	}
+	else
+		nbr = n;
+	if (nbr >= 10)
+		ft_putnbr_fd(nbr / 10, fd);
+	ft_putchar_fd(nbr % 10 + '0', fd);
+}
+
+// ITOA
+
+static int	ft_ndigits(long n)
+{
+	int	ndigits;
+
+	ndigits = 0;
+	if (n < 0)
+	{
+		ndigits++;
+		n = n * -1;
+	}
+	if (n == 0)
+		return (1);
+	while (n > 0)
+	{
+		n = n / 10;
+		ndigits++;
+	}
+	return (ndigits);
+}
+
+static char	*ft_strfiller(char *n_str, int ndigits, long n_long)
+{
+	n_str[ndigits] = '\0';
+	ndigits--;
+	if (n_long < 0)
+	{
+		n_str[0] = '-';
+		n_long = n_long * -1;
+	}
+	if (n_long == 0)
+	{
+		n_str[0] = '0';
+		return (n_str);
+	}
+	while (n_long > 0)
+	{
+		n_str[ndigits] = (n_long % 10) + '0';
+		n_long = n_long / 10;
+		ndigits--;
+	}
+	return (n_str);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*n_str;
+	int		ndigits;
+	long	n_long;
+
+	n_long = (long)n;
+	ndigits = ft_ndigits(n_long);
+	n_str = malloc(sizeof(char) * (ndigits + 1));
+	if (!(n_str))
+		return (NULL);
+	return (ft_strfiller(n_str, ndigits, n_long));
+}
+
+
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*ptr;
+
+	ptr = malloc(count * size);
+	if (!(ptr))
+		return (NULL);
+	//ft_memset(ptr, 0, count * size);
+	//ft_bzero(ptr, count * size);
+	size_t			i;
+	size_t			len;
+	unsigned char	*b_uc;
+	unsigned char c;
+	c = 0;
+	len = count * size;
+	i = 0;
+	b_uc = (unsigned char *)ptr;
+	while (i < len)
+	{
+		b_uc[i] = c;
+		i++;
+	}
+	return (ptr);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+char	*ft_utoa(unsigned int n)
+{
+	char			*n_str;
+	unsigned int	ndigits;
+
+	ndigits = ft_ndigits(n);
+	n_str = ft_calloc(sizeof(char), (ndigits + 1));
+	if (!(n_str))
+		return (NULL);
+	ndigits--;
+	if (n < 0)
+	{
+		n_str[0] = '-';
+		n = n * -1;
+	}
+	if (n == 0)
+		return (n_str);
+	while (n > 0)
+	{
+		n_str[ndigits] = (n % 10) + '0';
+		n = n / 10;
+		ndigits--;
+	}
+	return (n_str);
+}
+
+/* libft end */
 
 int	ft_printf(const char *fs_list, ...);
 int	parse_fs_list(char fs_char, va_list arg_list);
@@ -80,18 +241,6 @@ int fs_i(va_list arg_list);
 int fs_u(va_list arg_list);
 int fs_x(va_list arg_list);
 int fs_X(va_list arg_list);
-
-/*
-void	ft_putstr_fd(char *str, int fd)
-{
-	if (str)
-		while (*str)
-		{
-			write(fd, str, 1);
-			str++;
-		}
-}
-*/
 
 int		fs_c(va_list arg_list)
 {
@@ -113,17 +262,10 @@ int	fs_s(va_list arg_list)
 	{
 		write (1, "(null)", 6);
 		return (6);
-		//ft_putstr_fd("(null)", 1);
-		//len = ft_strlen("(null)");
-		return (len);
 	}
-	else
-	{
-		ft_putstr_fd(arg, 1);
-		len = ft_strlen(arg);
-		return (len);
-	}
-	return (0);
+	ft_putstr_fd(arg, 1);
+	len = ft_strlen(arg);
+	return (len);
 }
 
 int	fs_p(va_list arg_list)
@@ -131,19 +273,32 @@ int	fs_p(va_list arg_list)
 	return (0);
 }
 
-int	fs_d(va_list arg_list)
+int	fs_di(va_list arg_list)
 {
-	return (0);
+	char	*arg;
+	char	*s;
+	int		len;
+
+	arg = va_arg(arg_list, int);
+	s = ft_itoa(arg);
+	ft_putstr_fd(s, 1);
+	len = ft_strlen(s);
+	return (len);
 }
 
-int	fs_i(va_list arg_list)
-{
-	return (0);
-}
+// %u print an unsigned decimal (base 10) number.
 
 int	fs_u(va_list arg_list)
 {
-	return (0);
+	char	*arg;
+	char	*s;
+	int		len;
+
+	arg = va_arg(arg_list, unsigned int);
+	s = ft_utoa(arg);
+	ft_putstr_fd(s, 1);
+	len = ft_strlen(s);
+	return (len);
 }
 
 int	fs_x(va_list arg_list)
@@ -167,10 +322,8 @@ int	parse_fs_list(char fs_char, va_list arg_list)
 		nchars = (nchars + fs_s(arg_list));
 	if (fs_char == 'p')
 		nchars = (nchars + fs_p(arg_list));
-	if (fs_char == 'd')
-		nchars = (nchars + fs_d(arg_list));
-	if (fs_char == 'i')
-		nchars = (nchars + fs_i(arg_list));
+	if ((fs_char == 'd') || (fs_char == 'i'))
+		nchars = (nchars + fs_di(arg_list));
 	if (fs_char == 'u')
 		nchars = (nchars + fs_u(arg_list));
 	if (fs_char == 'x')
@@ -179,7 +332,7 @@ int	parse_fs_list(char fs_char, va_list arg_list)
 		nchars = (nchars + fs_X(arg_list));
 	if (fs_char == '%')
 		write(1, "%%", 1);
-	return (0);
+	return (nchars);
 }
 
 int	ft_printf(const char *fs_list, ...)
@@ -198,15 +351,13 @@ int	ft_printf(const char *fs_list, ...)
 		if (fs_list_s[i] == '%')
 		{
 			i++;
-			parse_fs_list(fs_list_s[i], arg_list);								// wat moet die returnen?
-			nchars = nchars + 1;
+			nchars = nchars + parse_fs_list(fs_list_s[i], arg_list);
 		}
 		else
 		{
 			nchars = nchars + write(1, &fs_list_s[i], 1);
 		}
 		i++;
-		printf("%d", nchars);
 	}
 	va_end(arg_list);
 	return (nchars);
@@ -214,13 +365,41 @@ int	ft_printf(const char *fs_list, ...)
 
 int	main(void)
 {
-	int test1 = 42;
-	int test2 = 24;
-	char test3[] = "Goodmorning";
-	char test4 = 'X';
-	int tmp;
+	char c_test1 = 'A'; 														// 1
+	char c_test2 = '9'; 														// 1
+	char s_test1[] = "Goodmorning"; 											// 11
+	char s_test2[] = "wower43s4t3y794t3"; 										// 17
+	int i_test1 = 123;															// 3
+	int i_test2 = 987654321;													// 9
+	unsigned int u_test1 = 123;													// 3
+	unsigned int u_test2 = 4294967295;											// 10
 
-	tmp = ft_printf("Hey: %s %c", NULL, test4);
-	printf("\naantal chars: %d", tmp);
+	int c_count;
+	c_count = ft_printf("%c %c", c_test1, c_test2); 							// 8
+	printf("\n");
+	printf("Number of chars: %d", c_count);
+	printf("\n=======================\n");
+
+	int s_count;
+	s_count = ft_printf("%s %s", s_test1, s_test2); 							// 11 + 17 + 1
+	printf("\n");
+	printf("Number of chars: %d", s_count);
+	printf("\n=======================\n");
+
+	int i_count;
+	i_count = ft_printf("%i %i", i_test1, i_test2); 							// 11 + 17 + 1
+	printf("\n");
+	printf("Number of chars: %d", i_count);
+	//printf("\n%d", i_test1);
+	printf("\n=======================\n");
+
+	int u_count;
+	u_count = ft_printf("%u %u", u_test1, u_test2); 							// 11 + 17 + 1
+	printf("\n");
+	printf("Number of chars: %d", u_count);
+	//printf("\n%d", u_test1);
+	printf("\n=======================\n");
+
+
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/10 10:22:54 by mikuiper      #+#    #+#                 */
-/*   Updated: 2021/11/14 15:31:00 by mikuiper      ########   odam.nl         */
+/*   Updated: 2021/11/16 21:49:53 by mkuipers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,16 +208,6 @@ void	*ft_calloc(size_t count, size_t size)
 	return (ptr);
 }
 
-
-
-
-
-
-
-
-
-
-
 char	*ft_utoa(unsigned int n)
 {
 	char			*n_str;
@@ -414,9 +404,4 @@ int	main(void)
 	printf("Number of chars: %d", u_count);
 	//printf("\n%d", u_test1);
 	printf("\n=======================\n");
-
-
-
-
-	return (0);
 }

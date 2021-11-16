@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/10 10:22:54 by mikuiper      #+#    #+#                 */
-/*   Updated: 2021/11/16 22:02:54 by mkuipers      ########   odam.nl         */
+/*   Updated: 2021/11/16 22:05:04 by mkuipers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -401,8 +401,29 @@ int	main(void)
 	int u_count_old;
 	u_count_own = ft_printf("%u %u\n", u_test1, u_test2);
 	u_count_old = ft_printf("%u %u\n", u_test1, u_test2);
-
 	printf("Own: %d\n", u_count_own);
 	printf("Old: %d\n", u_count_old);
+
+	int p_count_own;
+	int p_count_old;
+	p_count_own = ft_printf("%p %p\n", p_test1, p_test2);
+	p_count_old = ft_printf("%p %p\n", p_test1, p_test2);
+	printf("Own: %d\n", p_count_own);
+	printf("Old: %d\n", p_count_old);
+
+	int x_count_own;
+	int x_count_old;
+	x_count_own = ft_printf("%x %x\n", x_test1, x_test2);
+	x_count_old = ft_printf("%x %x\n", x_test1, x_test2);
+	printf("Own: %d\n", x_count_own);
+	printf("Old: %d\n", x_count_old);
+
+	int X_count_own;
+	int X_count_old;
+	X_count_own = ft_printf("%X %X\n", X_test1, X_test2);
+	X_count_old = ft_printf("%X %X\n", X_test1, X_test2);
+	printf("Own: %d\n", X_count_own);
+	printf("Old: %d\n", X_count_old);
+
 	printf("\n=======================\n");
 }

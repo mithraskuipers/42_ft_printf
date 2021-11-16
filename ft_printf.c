@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/10 10:22:54 by mikuiper      #+#    #+#                 */
-/*   Updated: 2021/11/16 22:05:04 by mkuipers      ########   odam.nl         */
+/*   Updated: 2021/11/16 22:45:55 by mkuipers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ static int	ft_ndigits(long n)
 	}
 	return (ndigits);
 }
-
+/*
 static char	*ft_strfiller(char *n_str, int ndigits, long n_long)
 {
 	n_str[ndigits] = '\0';
@@ -182,6 +182,7 @@ char	*ft_itoa(int n)
 		return (NULL);
 	return (ft_strfiller(n_str, ndigits, n_long));
 }
+*/
 
 void	*ft_calloc(size_t count, size_t size)
 {
@@ -206,6 +207,37 @@ void	*ft_calloc(size_t count, size_t size)
 		i++;
 	}
 	return (ptr);
+}
+
+
+
+
+char	*ft_itoa(int n)
+{
+	char			*n_str;
+	int	ndigits;
+
+	if (n == 0)
+		return (ft_strdup("0"));
+	ndigits = ft_ndigits(n);
+	n_str = ft_calloc(sizeof(char), (ndigits + 1));
+	if (!(n_str))
+		return (NULL);
+	ndigits--;
+	if (n < 0)
+	{
+		n_str[0] = '-';
+		n = n * -1;
+	}
+	if (n == 0)
+		return (n_str);
+	while (n > 0)
+	{
+		n_str[ndigits] = (n % 10) + '0';
+		n = n / 10;
+		ndigits--;
+	}
+	return (n_str);
 }
 
 char	*ft_utoa(unsigned int n)
@@ -273,6 +305,27 @@ int	fs_s(va_list arg_list)
 	ft_putstr_fd(arg, 1);
 	return (ft_strlen(arg));
 }
+
+
+int	hex(int a)
+{
+	int 	a_tmp;
+	int 	len;
+	char	*s;
+	
+	a_tmp = a;
+	len = 0;
+	while (a_tmp >= 16)
+	{
+		a_tmp = a_tmp / 16;
+		len = len + 1;
+	}
+	s = ft_calloc(len, sizeof(char));
+	if (!(s))
+		return (NULL);
+}
+
+
 
 int	fs_p(va_list arg_list)
 {
@@ -404,26 +457,32 @@ int	main(void)
 	printf("Own: %d\n", u_count_own);
 	printf("Old: %d\n", u_count_old);
 
+	/*
 	int p_count_own;
 	int p_count_old;
 	p_count_own = ft_printf("%p %p\n", p_test1, p_test2);
 	p_count_old = ft_printf("%p %p\n", p_test1, p_test2);
 	printf("Own: %d\n", p_count_own);
 	printf("Old: %d\n", p_count_old);
+	*/
 
+	/*
 	int x_count_own;
 	int x_count_old;
 	x_count_own = ft_printf("%x %x\n", x_test1, x_test2);
 	x_count_old = ft_printf("%x %x\n", x_test1, x_test2);
 	printf("Own: %d\n", x_count_own);
 	printf("Old: %d\n", x_count_old);
+	*/
 
+	/*
 	int X_count_own;
 	int X_count_old;
 	X_count_own = ft_printf("%X %X\n", X_test1, X_test2);
 	X_count_old = ft_printf("%X %X\n", X_test1, X_test2);
 	printf("Own: %d\n", X_count_own);
 	printf("Old: %d\n", X_count_old);
+	*/
 
 	printf("\n=======================\n");
 }

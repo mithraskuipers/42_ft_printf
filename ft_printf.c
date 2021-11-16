@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/10 10:22:54 by mikuiper      #+#    #+#                 */
-/*   Updated: 2021/11/16 21:49:53 by mkuipers      ########   odam.nl         */
+/*   Updated: 2021/11/16 22:02:54 by mkuipers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -376,32 +376,33 @@ int	main(void)
 	unsigned int u_test1 = 123;													// 3
 	unsigned int u_test2 = 0;													// 10 // 4294967295
 
-	int c_count;
-	c_count = ft_printf("%c %c", c_test1, c_test2); 							// 8
-	printf("\n");
-	printf("Number of chars: %d", c_count);
-	printf("\n=======================\n");
+	int c_count_own;
+	int c_count_old;
+	c_count_own = ft_printf("%c %c\n", c_test1, c_test2);
+	c_count_old = ft_printf("%c %c\n", c_test1, c_test2);
+	printf("Own: %d\n", c_count_own);
+	printf("Old: %d\n", c_count_old);
 
-	int s_count;
-	s_count = ft_printf("%s %s", s_test1, s_test2); 							// 11 + 17 + 1
-	printf("\n");
-	printf("Number of chars: %d", s_count);
-	printf("\n=======================\n");
+	int s_count_own;
+	int s_count_old;
+	s_count_own = ft_printf("%s %s\n", s_test1, s_test2);
+	s_count_old = ft_printf("%s %s\n", s_test1, s_test2);
+	printf("Own: %d\n", s_count_own);
+	printf("Old: %d\n", s_count_old);
 
-	int i_count;
-	i_count = ft_printf("%i %i", i_test1, i_test2); 							// 11 + 17 + 1
-	printf("\n");
-	printf("Number of chars: %d", i_count);
-	//printf("\n%d", i_test1);
-	printf("\n=======================\n");
+	int i_count_own;
+	int i_count_old;
+	i_count_own = ft_printf("%i %i\n", i_test1, i_test2);
+	i_count_old = ft_printf("%i %i\n", i_test1, i_test2);
+	printf("Own: %d\n", i_count_own);
+	printf("Old: %d\n", i_count_old);
 
-	int u_count;
-	u_count = ft_printf("%u %u", u_test1, u_test2); 							// 11 + 17 + 1
-	printf("\n");
-	u_count = printf("%u %u", u_test1, u_test2); 							// 11 + 17 + 1
-	printf("\n");
+	int u_count_own;
+	int u_count_old;
+	u_count_own = ft_printf("%u %u\n", u_test1, u_test2);
+	u_count_old = ft_printf("%u %u\n", u_test1, u_test2);
 
-	printf("Number of chars: %d", u_count);
-	//printf("\n%d", u_test1);
+	printf("Own: %d\n", u_count_own);
+	printf("Old: %d\n", u_count_old);
 	printf("\n=======================\n");
 }

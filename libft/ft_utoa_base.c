@@ -6,7 +6,7 @@
 /*   By: mkuipers <mkuipers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/17 17:43:43 by mkuipers      #+#    #+#                 */
-/*   Updated: 2021/11/17 22:56:23 by mkuipers      ########   odam.nl         */
+/*   Updated: 2021/11/18 15:38:49 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ char	*ft_utoa_base(unsigned int n, int base)
 	char			*s;
 	char			*base_set;
 
-	base_set = ft_strdup("0123456789abcdef");
+	if (n == 0)
+		return (ft_strdup("0"));
 	ndigits = ft_ndigits_base(((unsigned int)n), base);
 	s = ft_calloc((ndigits + 1), sizeof(char));
-	if (!(s))
+	base_set = ft_strdup("0123456789abcdef");
+	if ((!(base_set)) || (!(s)))
 		return (NULL);
 	s[ndigits] = 0;
 	while ((ndigits) && (n))
@@ -30,5 +32,6 @@ char	*ft_utoa_base(unsigned int n, int base)
 		s[ndigits] = base_set[n % base];
 		n = n / base;
 	}
+	free (base_set);
 	return (s);
 }

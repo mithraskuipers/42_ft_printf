@@ -3,8 +3,8 @@
 
 int	main(void)
 {
-	unsigned int a;
-	a = 0;
+	unsigned long long a;
+	a = 10;
 	size_t ndigits;
 
 	ndigits = ft_ndigits_base(a, 10);

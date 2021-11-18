@@ -63,8 +63,10 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		ft_isupper(int c);
 char	*ft_stoupper(char *s);
 int		ft_ndigits(long n);
-size_t	ft_ndigits_base(long long n, int base);
-char	*ft_itoa_base(long long n, int base);
+//size_t	ft_ndigits_base(long long n, int base);
+size_t ft_ndigits_base(unsigned long long x, unsigned long long z);
+
+char	*ft_itoa_base(unsigned long long n, int base);
 int		ft_toabs(int n);
 char	*ft_utoa_base(unsigned int n, int base);
 char	*ft_utoa(unsigned int n);

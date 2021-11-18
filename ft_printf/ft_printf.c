@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/10 10:22:54 by mikuiper      #+#    #+#                 */
-/*   Updated: 2021/11/18 18:16:40 by mikuiper      ########   odam.nl         */
+/*   Updated: 2021/11/18 19:12:35 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	fs_di(va_list arg_list)
 	int		arg;
 	int		len;
 
-	arg = va_arg(arg_list, int);
+	arg = (unsigned long long)va_arg(arg_list, unsigned long long);
 	s = ft_itoa_base(arg, 10);
 	ft_putstr_fd(s, 1);
 	len = ft_strlen(s);
@@ -133,7 +133,15 @@ int	fs_p(va_list arg_list)
 	int 				write_len;
 
 	arg = ((unsigned long long)va_arg(arg_list, unsigned long long));
-	s = ft_itoa_base2(arg, 16);
+
+
+	//printf("before: %llx\n", arg);
+	//printf("%s\n", s);
+	//ft_printf("%x\n", arg);
+	s = ft_itoa_base((unsigned long long)arg, 16);
+	//printf("after: %llx\n", arg);
+	//printf("s after: %s\n", s);
+
 	write_len = write(1, "0x", 2);
 
 	ft_putstr_fd(s, 1);

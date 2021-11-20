@@ -1,7 +1,0 @@
-/* 
-Het eerste argument is een string. Dat is wat bij de reguliere printf() tussen
-de dubbele quotes komt. Dat allemaal wordt hier opgevangen in fs_list. Wat bij
-de reguliere printf() buiten de dubbele quotes komt zijn de argumenten voor printf(),
-en dat valt bij mij onder arg_list. Dit betekent dat fs_list bij mij 1 deel is
-(namelijk 1 string), en arg_list bestaat uit meerdere delen.
-*/

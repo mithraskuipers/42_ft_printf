@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_ndigits_base.c                                  :+:    :+:            */
+/*   ft_undigits_base.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/11/17 12:02:25 by mikuiper      #+#    #+#                 */
-/*   Updated: 2021/11/19 16:00:13 by mikuiper      ########   odam.nl         */
+/*   Created: 2021/11/19 16:49:20 by mikuiper      #+#    #+#                 */
+/*   Updated: 2021/11/19 16:49:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_ndigits_base(long long n, int base)
+int	ft_undigits_base(unsigned long long n, int base)
 {
-	int	i;
+	int	ndigits;
 
-	i = 0;
-	if (n < 0)
-	{
-		n = n * -1;
-		i++;
-	}
+	if (n == 0)
+		return (1);
+	ndigits = 0;
 	while (n > 0)
 	{
-		n /= base;
-		i++;
+		n = n / base;
+		ndigits++;
 	}
-	return (i);
+	return (ndigits);
 }

@@ -38,10 +38,11 @@ SRCS = 	ft_atoi.c \
 		ft_stoupper.c \
 		ft_ndigits.c \
 		ft_ndigits_base.c \
+		ft_undigits_base.c \
 		ft_itoa_base.c \
 		ft_toabs.c \
 		ft_utoa_base.c \
-		ft_utoa.c \
+		ft_utoa.c
 
 
 OFILES = $(SRCS:.c=.o)

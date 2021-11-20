@@ -1,31 +1,27 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        ::::::::            */
-/*   ft_printf.h                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/11/18 11:59:54 by mikuiper      #+#    #+#                 */
-/*   Updated: 2021/11/18 12:12:21 by mikuiper      ########   odam.nl         */
-/*                                                                            */
-/* ************************************************************************** */
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <unistd.h>
-# include <stdarg.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include "../libft/libft.h"
-#include <stdarg.h>
+# include <stdarg.h>
 
+/* ft_printf */
+int		ft_printf(const char *fs_list, ...);
+int		parse_fs_list(char fs_char, va_list arg_list);
+int		fs_c(va_list arg_list);
+int		fs_s(va_list arg_list);
+int		fs_p(va_list arg_list);
+int		fs_di(va_list arg_list);
+int		fs_u(va_list arg_list);
+int		fs_x(va_list arg_list);
+int		fs_X(va_list arg_list);
 
-int	ft_printf(const char *fs_list, ...);
-int	parse_fs_list(char fs_char, va_list arg_list);
+/* libft */
+char	*ft_itoa_base(long long n, int base);
+void	ft_putstr_fd(char *s, int fd);
+size_t	ft_strlen(const char *s);
+char	*ft_utoa_base(unsigned long long n, int base);
+char	*ft_stoupper(char *s);
 
-int fs_c(va_list arg_list);
-int fs_s(va_list arg_list);
-int fs_p(va_list arg_list);
-int fs_d(va_list arg_list);
-int fs_i(va_list arg_list);
-int fs_u(va_list arg_list);
-int fs_x(va_list arg_list);
-int fs_X(va_list arg_list);
+#endif

@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_ndigits_base.c                                  :+:    :+:            */
+/*   fs_c.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/11/17 12:02:25 by mikuiper      #+#    #+#                 */
-/*   Updated: 2021/11/19 16:00:13 by mikuiper      ########   odam.nl         */
+/*   Created: 2021/11/19 15:32:39 by mikuiper      #+#    #+#                 */
+/*   Updated: 2021/11/19 15:57:16 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./ft_printf.h"
 
-int	ft_ndigits_base(long long n, int base)
+int	fs_c(va_list arg_list)
 {
-	int	i;
+	int	arg;
 
-	i = 0;
-	if (n < 0)
-	{
-		n = n * -1;
-		i++;
-	}
-	while (n > 0)
-	{
-		n /= base;
-		i++;
-	}
-	return (i);
+	arg = va_arg(arg_list, int);
+	write (1, &arg, 1);
+	return (1);
 }

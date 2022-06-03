@@ -18,10 +18,10 @@ int		fs_x(va_list arg_list);
 int		fs_X(va_list arg_list);
 
 /* libft */
-char	*ft_itoa_base(long long n, int base);
-void	ft_putstr_fd(char *s, int fd);
 size_t	ft_strlen(const char *s);
+char	*ft_itoa_base(long long n, int base);
 char	*ft_utoa_base(unsigned long long n, int base);
 char	*ft_stoupper(char *s);
+void	ft_putstr_fd(char *s, int fd);
 
 #endif

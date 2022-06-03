@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/10 10:22:54 by mikuiper      #+#    #+#                 */
-/*   Updated: 2021/11/19 15:56:27 by mikuiper      ########   odam.nl         */
+/*   Updated: 2021/11/21 14:25:47 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,17 @@ int	parse_format(char fs_char, va_list arg_list)
 		nchars = (nchars + fs_X(arg_list));
 	else if (fs_char == '%')
 		nchars = (nchars + write(1, "%", 1));
+	else if (fs_char != '\0')
+		return (write(1, &fs_char, 1));
 	return (nchars);
 }
 
 int	ft_printf(const char *format, ...)
 {
 	va_list	arg_list;
-	char	*format_s;
 	int		i;
 	int		nchars;
+	char	*format_s;
 
 	va_start(arg_list, format);
 	i = 0;
@@ -51,13 +53,12 @@ int	ft_printf(const char *format, ...)
 	{
 		if (format_s[i] == '%')
 		{
-			i++;
-			nchars = (nchars + parse_format(format_s[i], arg_list));
+			nchars = nchars + parse_format(format_s[i + 1], arg_list);
+			if (format_s[i + 1] != '\0')
+				i++;
 		}
 		else
-		{
 			nchars = (nchars + write(1, &format_s[i], 1));
-		}
 		i++;
 	}
 	va_end(arg_list);

@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/19 15:32:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2021/11/19 15:41:39 by mikuiper      ########   odam.nl         */
+/*   Updated: 2021/11/21 14:19:38 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ int	fs_s(va_list arg_list)
 
 	arg = va_arg(arg_list, char *);
 	if (!(arg))
-	{
-		write (1, "(null)", 6);
-		return (6);
-	}
+		return (write (1, "(null)", 6));
 	ft_putstr_fd(arg, 1);
 	return (ft_strlen(arg));
 }

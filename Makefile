@@ -8,25 +8,25 @@ SRC = ./ft_printf/ft_printf.c \
 
 OBJ = $(SRC:.c=.o)
 
-LIB_PATH = ./libft
+LIBFT_PATH = ./libft
 
 NAME = libftprintf.a
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-		@$(MAKE) -C $(LIB_PATH)
-		@ar rcs $(NAME) $(OBJ) $(LIB_PATH)/*.o
+		@$(MAKE) -C $(LIBFT_PATH)
+		@ar rcs $(NAME) $(OBJ) $(LIBFT_PATH)/*.o
 
 %.o: %.c
 		gcc -Wall -Werror -Wextra -c $< -o $@
 
 clean:
-		@$(MAKE) clean -C $(LIB_PATH)
+		@$(MAKE) clean -C $(LIBFT_PATH)
 		@rm -rf $(OBJ)
 
 fclean: clean
-		@$(MAKE) fclean -C $(LIB_PATH)
+		@$(MAKE) fclean -C $(LIBFT_PATH)
 		@rm -rf $(NAME)
 
 re: fclean all

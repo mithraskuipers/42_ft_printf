@@ -44,7 +44,6 @@ SRCS = 	ft_atoi.c \
 		ft_utoa_base.c \
 		ft_utoa.c
 
-
 OFILES = $(SRCS:.c=.o)
 
 BONUS_SRC = $(SRCS) \
@@ -66,7 +65,7 @@ all: $(NAME)
 
 $(NAME): $(OFILES) $(INCLUDES)
 	@ar rcs $(NAME) $?
-	@echo "\033[92mCompiling library\033[0m"
+	@echo "\033[92mCompiled library\033[0m"
 
 bonus: $(NAME) $(BONUS_OFILES) $(BONUS_SRC)
 	@touch bonus
@@ -80,10 +79,8 @@ clean:
 	@/bin/rm -f $(BONUS_OFILES)
 	@/bin/rm -f a.out
 	@/bin/rm -f bonus
-	@echo "\033[92mRemoved all object files.\033[0m"
 
 fclean:	clean
 	@/bin/rm -f $(NAME)
-	@echo "\033[92mRemoved library and all object files.\033[0m"
 
 re: fclean all

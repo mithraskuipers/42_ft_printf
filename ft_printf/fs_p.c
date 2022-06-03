@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   pointer.c                                          :+:    :+:            */
+/*   fs_p.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/19 15:27:57 by mikuiper      #+#    #+#                 */
-/*   Updated: 2021/11/19 15:28:13 by mikuiper      ########   odam.nl         */
+/*   Updated: 2021/11/21 14:18:53 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	fs_p(va_list arg_list)
 {
-	char				*s;
 	unsigned long long	arg;
+	char				*s;
 	int					len;
 	int					write_len;
 

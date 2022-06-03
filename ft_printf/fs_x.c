@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/19 15:17:02 by mikuiper      #+#    #+#                 */
-/*   Updated: 2021/11/19 17:50:55 by mikuiper      ########   odam.nl         */
+/*   Updated: 2021/11/21 14:20:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	fs_x(va_list arg_list)
 {
-	char			*s;
 	unsigned int	arg;
+	char			*s;
 	int				len;
 
 	arg = ((unsigned int)va_arg(arg_list, int));
@@ -28,8 +28,8 @@ int	fs_x(va_list arg_list)
 
 int	fs_X(va_list arg_list)
 {
-	char			*s;
 	unsigned int	arg;
+	char			*s;
 	int				len;
 
 	arg = ((unsigned int)va_arg(arg_list, int));

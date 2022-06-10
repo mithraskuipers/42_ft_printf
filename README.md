@@ -51,7 +51,7 @@ The prototype of ft_printf() is:
 int ft_printf(const char *, ...);
 ```
 
-Here are the requirements:
+Project requirements:
 
 - Don’t implement the buffer management of the original printf().
 - Your function has to handle the following conversions: cspdiuxX%

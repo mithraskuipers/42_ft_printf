@@ -10,42 +10,35 @@
 
 ## :book: About the project
 
-<em>Summary</em>: This project is about programming a function that returns a line read from a file descriptor.
+<em>Summary</em>: The goal of this project is pretty straightforward. You will recode printf(). You will mainly learn about using a variable number of arguments.
 
-<em>Goals</em>: This project will not only allow you to add a very convenient function to your collection, but it will also make you learn a highly interesting new concept in  C  programming: static variables.
+<em>Goals</em>: You will discover a popular and versatile C function: printf(). This exercise is a great opportunity to improve your programming skills. It is of moderate difficulty. You will discover variadic functions in C. The key to a successful ft_printf is a well-structured and extensible code.
 
 <table>
 <tbody>
 <tr>
-<td>Function name</td>
-<td>get_next_line</td>
-</tr>
-<tr>
-<td>Prototype</td>
-<td>char *get_next_line(int fd);</td>
+<td>Program name</td>
+<td>libftprintf.a</td>
 </tr>
 <tr>
 <td>Turn in files</td>
-<td>get_next_line.c, get_next_line_utils.c, get_next_line.h</td>
+<td>Makefile, *.h, */*.h, *.c, */*.c</td>
 </tr>
 <tr>
-<td>Parameters</td>
-<td>fd: The file descriptor to read from</td>
-</tr>
-<tr>
-<td>Return value</td>
-<td>
-<p>Read line: correct behavior</p>
-<p>NULL: there is nothing else to read, or an error occurred</p>
-</td>
+<td>Makefile</td>
+<td>NAME, all, clean, fclean, re</td>
 </tr>
 <tr>
 <td>External functs.</td>
-<td>read, malloc, free</td>
+<td>malloc, free, write, va_start, va_arg, va_copy, va_end</td>
+</tr>
+<tr>
+<td>Libft authorized</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>Description</td>
-<td>Write a function that returns a line read from a file descriptor</td>
+<td>Write a library that contains ft_printf(), a function that will mimic the original printf()</td>
 </tr>
 </tbody>
 </table>
@@ -59,41 +52,7 @@
 
 ### :hammer_and_wrench: Building
 
-To use the get_next_line function in your code, include its header:
-
-```C
-#include "get_next_line.h"
-```
-And at compilation time, add the corresponding source files and an optional BUFFER_SIZE flag (default = 42).
-
-
-```bash
-get_next_line.c get_next_line_utils.c -D BUFFER_SIZE=<size>
-```
-
 ### :runner: Running
-
-To use the code, provide a main that obtains a file descriptor using open() and uses that file descriptor as the get_next_line function argument. For example..
-
-```bash
-int main(void)
-{
-	char *line;
-	int i;
-	int fd;
-	fd1 = open("files/file.txt", O_RDONLY);
-	i = 0;
-	while (i < 10)
-	{
-		line = get_next_line(fd);
-		printf("line [%d]: %s", i, line);
-		free(line);
-		i++;
-	}
-	close(fd);
-	return (0);
-}
-```
 
 #### Questions?
 Please connect with me on LinkedIn or send an e-mail.

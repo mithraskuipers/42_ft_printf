@@ -22,11 +22,11 @@
 </tr>
 <tr>
 <td>Turn in files</td>
-<td>```Makefile, *.h, */*.h, *.c, */*.c```</td>
+<td>Makefile, *.h, */*.h, *.c, */*.c</td>
 </tr>
 <tr>
 <td>Makefile</td>
-<td>```NAME, all, clean, fclean, re```</td>
+<td>NAME, all, clean, fclean, re</td>
 </tr>
 <tr>
 <td>External functs.</td>
